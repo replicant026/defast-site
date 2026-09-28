@@ -1,0 +1,77 @@
+{
+  "_comment": "Arquivo de configuração dos planos. Edite aqui para alterar nomes, preços e descrições.",
+
+  "plans": [
+    {
+      "id": "annual",
+      "name": "Plano Anual",
+      "description": "Assinatura anual com acesso completo ao DeFast",
+      "price": 449.90,
+      "cycle": "YEARLY",
+      "active": true,
+      "trialDays": 7,
+
+      "features": [
+        "Acesso a todas as funções",
+        "Teste 7 dias grátis",
+        "Cancele quando quiser"
+      ],
+
+      "display": {
+        "badge": "Assinatura",
+        "label": "Anual",
+        "sublabel": "Renova automaticamente",
+        "discountBadge": "Economia de 50%"
+      }
+    },
+    {
+      "id": "monthly",
+      "name": "Plano Mensal",
+      "description": "Assinatura mensal com acesso completo ao DeFast",
+      "price": 49.90,
+      "cycle": "MONTHLY",
+      "active": true,
+      "trialDays": 7,
+
+      "features": [
+        "Acesso a todas as funções",
+        "Teste 7 dias grátis",
+        "Cancele quando quiser"
+      ],
+
+      "display": {
+        "badge": "Assinatura",
+        "label": "Mensal",
+        "sublabel": "Renova automaticamente",
+        "discountBadge": "Economia de 20%"
+      }
+    },
+    {
+      "id": "onetime",
+      "name": "Acesso Único DeFast",
+      "description": "Acesso por 30 dias ao DeFast, sem renovação automática",
+      "price": 69.90,
+      "cycle": "ONETIME",
+      "active": true,
+      "trialDays": 0,
+
+      "features": [
+        "Acesso a todas as funções",
+        "Tenha 30 dias de uso",
+        "Sem cobranças recorrentes"
+      ],
+
+      "display": {
+        "badge": "Acesso Único",
+        "label": "Uso Único",
+        "sublabel": "Acesso por 30 dias",
+        "discountBadge": null
+      }
+    }
+  ],
+
+  "billing": {
+    "dueDateLimitDays": 3,
+    "allowedTypes": ["CREDIT_CARD", "PIX", "BOLETO"]
+  }
+}

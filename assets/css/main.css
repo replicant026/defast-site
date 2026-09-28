@@ -1,0 +1,1305 @@
+/*--------------------------------------------------------------
+# Font & Color Variables
+--------------------------------------------------------------*/
+/* Fonts */
+:root {
+  --default-font:
+    "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
+}
+
+
+
+/* Cores da Identidade Visual */
+:root {
+  --background-color: #ffffff;
+  --default-color: #444444;
+
+
+  --heading-color: #4a148c;
+
+  --accent-color: #d500f9;
+
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+
+  /* Variáveis Extras para o DeFast */
+  --brand-purple: #4a148c;
+  --brand-gradient: linear-gradient(135deg, #4a148c 0%, #d500f9 100%);
+  --brand-light-bg: #fdf4fe;
+}
+
+/* Nav Menu Colors */
+:root {
+  --nav-color: #444444;
+  --nav-hover-color: var(--brand-purple);
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #444444;
+  --nav-dropdown-hover-color: #d500f9;
+}
+
+/* Color Presets */
+.light-background {
+  --background-color: #fcfcfc;
+
+  --surface-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+
+/*--------------------------------------------------------------
+# Global Header
+--------------------------------------------------------------*/
+.header {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 15px 0;
+  transition: all 0.5s;
+  z-index: 997;
+}
+
+.header .logo {
+  line-height: 1;
+}
+
+.header .logo img {
+  max-height: 36px;
+  margin-right: 8px;
+}
+
+.header .logo h1 {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.header .btn-getstarted,
+.header .btn-getstarted:focus {
+  color: var(--contrast-color);
+  background: var(--brand-gradient);
+  font-size: 14px;
+  padding: 8px 25px;
+  margin: 0 0 0 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+  border: none;
+}
+
+.header .btn-getstarted:hover,
+.header .btn-getstarted:focus:hover {
+  color: var(--contrast-color);
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(213, 0, 249, 0.4);
+}
+
+@media (max-width: 1200px) {
+  .header .logo {
+    order: 1;
+  }
+
+  .header .btn-getstarted {
+    order: 2;
+    margin: 0 15px 0 0;
+    padding: 6px 15px;
+  }
+
+  .header .navmenu {
+    order: 3;
+  }
+}
+
+.scrolled .header {
+  box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
+}
+
+/*-------------------------------------------------------------
+Titulo Animado
+--------------------------------------------------------------*/
+/* Estilo básico do título */
+.brand-animation {
+  font-size: 2.5rem;
+  /* Ajuste o tamanho conforme necessário */
+  font-weight: bold;
+  display: flex;
+  /* Mantém tudo na mesma linha */
+  align-items: center;
+  justify-content: center;
+  /* Centraliza na tela */
+}
+
+/* A parte que vai sumir */
+.brand-animation .shrink {
+  display: inline-block;
+  overflow: hidden;
+  /* Esconde o texto quando a caixa diminuir */
+  white-space: nowrap;
+  /* Impede que o texto quebre linha */
+  max-width: 300px;
+  /* Tamanho inicial (suficiente para caber o texto) */
+  opacity: 1;
+
+  /* Configuração da animação */
+  animation: collapseText 1.5s ease-in-out forwards;
+  animation-delay: 2s;
+  /* Espera 2 segundos antes de começar a reduzir */
+}
+
+/* A Animação em si */
+@keyframes collapseText {
+  0% {
+    max-width: 300px;
+    opacity: 1;
+  }
+
+  100% {
+    max-width: 0px;
+    /* Reduz a largura a zero */
+    opacity: 0;
+    /* Deixa invisível para garantir */
+  }
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Navmenu - Desktop */
+@media (min-width: 1200px) {
+  .navmenu {
+    padding: 0;
+  }
+
+  .navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .navmenu li {
+    position: relative;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-color);
+    padding: 18px 15px;
+    font-size: 16px;
+    font-family: var(--nav-font);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+  }
+
+  .navmenu li:last-child a {
+    padding-right: 0;
+  }
+
+  .navmenu li:hover>a,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-hover-color);
+  }
+
+  .navmenu .dropdown ul {
+    margin: 0;
+    padding: 10px 0;
+    background: var(--nav-dropdown-background-color);
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    left: 14px;
+    top: 130%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 4px;
+    z-index: 99;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .navmenu .dropdown ul li {
+    min-width: 200px;
+  }
+
+  .navmenu .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    color: var(--nav-dropdown-color);
+  }
+
+  .navmenu .dropdown ul a i {
+    font-size: 12px;
+  }
+
+  .navmenu .dropdown ul a:hover,
+  .navmenu .dropdown ul .active:hover,
+  .navmenu .dropdown ul li:hover>a {
+    color: var(--nav-dropdown-hover-color);
+  }
+
+  .navmenu .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+
+  .navmenu .dropdown .dropdown ul {
+    top: 0;
+    left: -90%;
+    visibility: hidden;
+  }
+
+  .navmenu .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: -100%;
+    visibility: visible;
+  }
+}
+
+/* Navmenu - Mobile */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle {
+    color: var(--nav-color);
+    font-size: 28px;
+    line-height: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .navmenu {
+    padding: 0;
+    z-index: 9997;
+  }
+
+  .navmenu ul {
+    display: none;
+    list-style: none;
+    position: absolute;
+    inset: 60px 20px 20px 20px;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 6px;
+    background-color: var(--nav-mobile-background-color);
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 9998;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-dropdown-color);
+    padding: 10px 20px;
+    font-family: var(--nav-font);
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  }
+
+  .navmenu a i:hover,
+  .navmenu a:focus i:hover {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+  }
+
+  .navmenu a:hover,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-dropdown-hover-color);
+  }
+
+  .navmenu .active i,
+  .navmenu .active:focus i {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    transform: rotate(180deg);
+  }
+
+  .navmenu .dropdown ul {
+    position: static;
+    display: none;
+    z-index: 99;
+    padding: 10px 0;
+    margin: 10px 20px;
+    background-color: var(--nav-dropdown-background-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    box-shadow: none;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .navmenu .dropdown ul ul {
+    background-color: rgba(33, 37, 41, 0.1);
+  }
+
+  .navmenu .dropdown>.dropdown-active {
+    display: block;
+    background-color: rgba(33, 37, 41, 0.03);
+  }
+
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    position: absolute;
+    font-size: 32px;
+    top: 15px;
+    right: 15px;
+    margin-right: 0;
+    z-index: 9999;
+  }
+
+  .mobile-nav-active .navmenu {
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    background: rgba(33, 37, 41, 0.8);
+    transition: 0.3s;
+  }
+
+  .mobile-nav-active .navmenu>ul {
+    display: block;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+.footer {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-size: 14px;
+  padding: 30px 0;
+  position: relative;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+}
+
+.footer .footer-top {
+  padding-bottom: 10px;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  margin-bottom: 30px;
+}
+
+.footer .footer-about .logo {
+  line-height: 1;
+  margin-bottom: 25px;
+}
+
+.footer .footer-about .logo span {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: var(--heading-font);
+  color: var(--heading-color);
+}
+
+.footer .footer-about p {
+  font-size: 14px;
+  font-family: var(--heading-font);
+}
+
+.footer .footer-links h4 {
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .footer-links ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer .footer-links ul li:first-child {
+  padding-top: 0;
+}
+
+.footer .footer-links ul a {
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  display: inline-block;
+  line-height: 1;
+}
+
+.footer .footer-links ul a:hover {
+  color: var(--brand-purple);
+}
+
+.footer .copyright p {
+  margin-bottom: 0;
+}
+
+.footer .social-links {
+  margin-top: 20px;
+}
+
+.footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  font-size: 16px;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  margin: 0 5px;
+  transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.footer .credits {
+  margin-top: 10px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background: var(--background-color);
+  transition: all 0.6s ease-out;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #ffffff;
+  border-color: var(--accent-color) transparent var(--accent-color) transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1.5s linear infinite;
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 99999;
+  background-color: var(--brand-purple);
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
+
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--brand-purple), transparent 20%);
+  color: var(--contrast-color);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 30px;
+  scroll-margin-top: 30px;
+  overflow: clip;
+}
+
+@media (max-width: 1199px) {
+
+  section,
+  .section {
+    scroll-margin-top: 66px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+  color: var(--brand-purple);
+}
+
+.section-title h2:before,
+.section-title h2:after {
+  content: "";
+  width: 50px;
+  height: 2px;
+  background: var(--accent-color);
+  display: inline-block;
+}
+
+.section-title h2:before {
+  margin: 0 15px 10px 0;
+}
+
+.section-title h2:after {
+  margin: 0 0 10px 15px;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  position: relative;
+  padding: 10px 0 0px 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+}
+
+.hero p {
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  margin: 5px 0 20px 0;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.hero .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/*--------------------------------------------------------------
+# Pricing Section
+--------------------------------------------------------------*/
+.pricing .pricing-item {
+  background-color: var(--surface-color);
+  box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--background-color);
+  padding: 30px 40px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.pricing .pricing-item:hover {
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.15);
+}
+
+.pricing h3 {
+  font-weight: 600;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.pricing h4 {
+  color: var(--brand-purple);
+  font-size: 48px;
+  font-weight: bold;
+  font-family: var(--heading-font);
+  margin-bottom: 0;
+}
+
+.pricing h4 sup {
+  font-size: 28px;
+}
+
+.pricing h4 span {
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  font-size: 18px;
+}
+
+.pricing ul {
+  padding: 20px 0;
+  list-style: none;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  text-align: left;
+  line-height: 20px;
+}
+
+.pricing ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.pricing ul i {
+  color: #059652;
+  font-size: 24px;
+  padding-right: 3px;
+}
+
+.pricing ul .na {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.pricing ul .na i {
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.pricing ul .na span {
+  text-decoration: line-through;
+}
+
+.pricing .buy-btn {
+  color: var(--brand-purple);
+  display: inline-block;
+  padding: 8px 35px 10px 35px;
+  border-radius: 50px;
+  transition: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--heading-font);
+  transition: 0.3s;
+  border: 1px solid var(--brand-purple);
+}
+
+.pricing .buy-btn:hover {
+  background: var(--brand-purple);
+  color: var(--contrast-color);
+}
+
+.pricing .featured {
+  border-top-color: var(--brand-purple);
+}
+
+
+/*--------------------------------------------------------------
+# Faq Section
+--------------------------------------------------------------*/
+.faq .faq-item {
+  margin: 10px 0;
+  padding: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.faq .faq-item i {
+  color: var(--accent-color);
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.faq .faq-item h4 {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 700;
+}
+
+.faq .faq-item p {
+  font-size: 15px;
+}
+
+.faq .faq-item:first-child {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.faq .faq-item:last-child {
+  border: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.contact {
+  background-position: left center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .contact {
+    background-position: center 50px;
+    background-size: contain;
+  }
+}
+
+.contact:before {
+  content: "";
+  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* ==========================================================
+   ESTILOS - PÁGINAS LEGAIS (Política / Termos)
+   ========================================================== */
+.legal-content ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.legal-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================
+   ESTILOS PERSONALIZADOS - ÁREA DO CLIENTE
+   ========================================================== */
+.btn-brand {
+  background: var(--brand-purple);
+  color: var(--contrast-color);
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-brand:hover {
+  color: var(--contrast-color);
+  opacity: 0.9;
+  box-shadow: 0 4px 15px rgba(213, 0, 249, 0.4);
+}
+
+.text-brand {
+  color: var(--brand-purple) !important;
+  transition: 0.3s;
+}
+
+.text-brand:hover {
+  color: var(--accent-color) !important;
+}
+
+.btn-brand-outline {
+  border: 1px solid var(--brand-purple);
+  /* Borda roxa */
+  background: transparent;
+  color: var(--brand-purple);
+  /* Texto roxo inicialmente */
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-brand-outline:hover {
+  background-color: var(--brand-purple);
+  /* Fundo roxo ao passar o mouse */
+  color: var(--contrast-color);
+  /* Texto branco ao passar o mouse */
+}
+
+.btn-download {
+  border: 1px solid var(--brand-purple);
+  /* Borda roxa */
+  color: var(--brand-purple) !important;
+  /* Texto roxo no hover */
+  background: #ffffff;
+  border-color: #4a148c !important;
+  /* Borda roxa no hover */
+}
+
+.btn-download:hover {
+  color: #ffffff !important;
+  /* Texto branco no hover */
+  background: var(--brand-purple);
+  border-color: #4a148c !important;
+  /* Borda roxa no hover */
+  opacity: 0.9;
+  box-shadow: 0 4px 15px rgba(120, 120, 120, 0.4);
+}
+
+/* ==========================================================
+   RIBBON
+   ========================================================== */
+
+/* Remove overflow clip do section para que o ribbon funcione corretamente */
+section.features {
+  overflow: visible;
+}
+
+/* Container Principal do Ribbon */
+.ribbon-container {
+  width: max-content;
+  max-width: 100%;
+  margin: 30px auto;
+  /* Centraliza horizontalmente e dá um espaço acima/abaixo */
+  background-color: #f5f6f7;
+  border: 1px solid #d4d4d4;
+  /* Adicionei borda em tudo já que ele não toca mais as laterais da tela */
+  border-radius: 6px;
+  /* Borda levemente arredondada para melhorar o visual solto */
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  overflow: visible;
+  /* Alterado para visible para evitar cortar os dropdowns */
+  position: relative;
+  /* Adicionado para ativar o controle de z-index */
+  z-index: 100;
+  /* Valor alto para garantir que fique acima de tudo */
+}
+
+/* Área das Abas (Tabs) */
+.ribbon-tabs {
+  display: flex;
+  background-color: #e1e1e1;
+  border-bottom: 1px solid #d4d4d4;
+  padding-top: 2px;
+}
+
+.tab {
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: default;
+  margin-right: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  color: #444;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background-color: #f5f6f7;
+  border-color: #d4d4d4;
+  color: #000;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -1px;
+  padding-bottom: 5px;
+}
+
+.tab-file {
+  background-color: #1973b8;
+  color: white;
+  font-weight: 500;
+}
+
+/* Área de Conteúdo do Ribbon (Painéis) */
+.ribbon-content {
+  display: flex;
+  height: 94px;
+  padding: 3px 0;
+  background-color: #f5f6f7;
+}
+
+/* Grupos / Painéis (ex: Geral, Elétrica) */
+.ribbon-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  position: relative;
+}
+
+.panel-items {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.panel-title {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 2px;
+}
+
+/* Separador entre painéis */
+.panel-separator {
+  width: 1px;
+  height: 80%;
+  background-color: #d4d4d4;
+  margin: auto 4px;
+}
+
+/* Botões do Ribbon */
+.ribbon-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 4px 6px;
+  cursor: pointer;
+  min-width: 50px;
+  height: 100%;
+}
+
+.ribbon-btn:hover {
+  background-color: #cce8ff;
+  border-color: #99d1ff;
+}
+
+.ribbon-btn:active {
+  background-color: #99d1ff;
+  border-color: #66b0ff;
+}
+
+.ribbon-btn img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 2px;
+  stroke: #444;
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn-text {
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.2;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropdown-arrow {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid #333;
+  margin-top: 4px;
+}
+
+.text-with-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Estilos para os Dropdowns --- */
+.dropdown {
+  position: relative;
+  height: 100%;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 190px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+  border: 1px solid #b0b0b0;
+  z-index: 100;
+  padding: 2px 0;
+  flex-direction: column;
+}
+
+.dropdown.active .dropdown-content {
+  display: flex;
+}
+
+.dropdown.active .ribbon-btn {
+  background-color: #d4d4d4;
+  border-color: #b0b0b0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 12px 5px 8px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid transparent;
+}
+
+.dropdown-item:hover {
+  background-color: #cce8ff;
+  border-color: #99d1ff;
+  margin: 0 1px;
+  padding: 4px 11px 4px 7px;
+}
+
+.dropdown-item img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  stroke: #444;
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dropdown-item span {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* --- Tela de Detalhes da Funcionalidade --- */
+.feature-details {
+  display: none;
+  /* Inicia oculto */
+  padding: 40px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #d4d4d4;
+  position: relative;
+  z-index: 1;
+  /* Mantém a tela de detalhes numa camada inferior */
+  gap: 40px;
+  animation: slideDown 0.3s ease-out;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feature-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #d4d4d4;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.feature-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.feature-media {
+  flex: 1.5;
+  background: #f9f9f9;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-media-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #999;
+  font-size: 16px;
+}
+
+.feature-media-placeholder svg {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.feature-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 20px;
+}
+
+.feature-text h2 {
+  color: #4a148c;
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.feature-text p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* ==========================================================
+   Responsividade: Tela de Detalhes
+   ========================================================== */
+@media (max-width: 991px) {
+  .feature-details {
+    flex-direction: column-reverse;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+
+  .feature-media {
+    min-height: 250px;
+  }
+
+  .feature-text {
+    padding-right: 0;
+    text-align: center;
+  }
+}
